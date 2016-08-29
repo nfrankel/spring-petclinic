@@ -25,6 +25,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
@@ -35,6 +36,7 @@ import javax.annotation.PostConstruct;
  * @author Antoine Rey
  */
 @Configuration
+@Profile("production")
 public class DandelionConfig {
 
     @Autowired
