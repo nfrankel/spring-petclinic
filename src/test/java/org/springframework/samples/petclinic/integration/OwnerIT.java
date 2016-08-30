@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
@@ -32,5 +33,23 @@ public class OwnerIT {
             .andExpect(model().attribute("owner", allOf(hasProperty("id", equalTo(10)),
                                                         hasProperty("lastName", equalToIgnoringCase("Estaban")))))
             .andExpect(view().name("owners/ownerDetails"));
+    }
+
+    @Test
+    public void shouldFill10OwnersInModelAndReturnOwnersListNameWhenSearchingForEmptyName() throws Exception {
+        mockMvc.perform(get("/owners.html").param("lastName", ""))
+            .andExpect(status().isOk())
+            .andExpect(model().attributeExists("selections"))
+            .andExpect(model().attribute("selections", hasSize(10)))
+            .andExpect(view().name("owners/ownersList"));
+    }
+
+    @Test
+    public void shouldFill2OwnersInModelAndReturnOwnersListVieWhenSearchingForNameEs() throws Exception {
+        mockMvc.perform(get("/owners.html").param("lastName", "es"))
+            .andExpect(status().isOk())
+            .andExpect(model().attributeExists("selections"))
+            .andExpect(model().attribute("selections", hasSize(2)))
+            .andExpect(view().name("owners/ownersList"));
     }
 }
