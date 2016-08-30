@@ -52,4 +52,12 @@ public class OwnerIT {
             .andExpect(model().attribute("selections", hasSize(2)))
             .andExpect(view().name("owners/ownersList"));
     }
+
+    @Test
+    public void shouldJustRedirectToOwner10sWhenSearchingForNameEstaban() throws Exception {
+        mockMvc.perform(get("/owners.html").param("lastName", "estaban"))
+            .andExpect(status().isFound())
+            .andExpect(model().size(0))
+            .andExpect(redirectedUrl("/owners/10"));
+    }
 }
