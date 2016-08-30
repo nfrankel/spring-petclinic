@@ -12,6 +12,7 @@ import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
+import static org.springframework.samples.petclinic.web.OwnerController.SHOW_OWNER_BY_ID;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -25,7 +26,7 @@ public class OwnerIT {
 
     @Test
     public void shouldFillOwnerInModelAndReturnOwnerDetailsWhenDisplayingSpecificId() throws Exception {
-        mockMvc.perform(get("/owners/10"))
+        mockMvc.perform(get(SHOW_OWNER_BY_ID, 10))
             .andExpect(status().isOk())
             .andExpect(model().attributeExists("owner"))
             .andExpect(model().attribute("owner", allOf(hasProperty("id", equalTo(10)),

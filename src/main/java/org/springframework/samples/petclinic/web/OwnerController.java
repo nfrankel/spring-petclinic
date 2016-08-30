@@ -43,6 +43,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class OwnerController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+    public static final String SHOW_OWNER_BY_ID = "/owners/{ownerId}";
     private final ClinicService clinicService;
 
 
@@ -128,7 +129,7 @@ public class OwnerController {
      * @param ownerId the ID of the owner to display
      * @return a ModelMap with the model attributes for the view
      */
-    @RequestMapping("/owners/{ownerId}")
+    @RequestMapping(SHOW_OWNER_BY_ID)
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
         mav.addObject(this.clinicService.findOwnerById(ownerId));
