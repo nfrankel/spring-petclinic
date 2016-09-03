@@ -42,8 +42,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class OwnerController {
 
-    private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+    public static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     public static final String SHOW_OWNER_BY_ID = "/owners/{ownerId}";
+    public static final String EDIT_OWNER_BY_ID = SHOW_OWNER_BY_ID + "/edit";
     private final ClinicService clinicService;
 
 
@@ -105,14 +106,14 @@ public class OwnerController {
         }
     }
 
-    @RequestMapping(value = "/owners/{ownerId}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = EDIT_OWNER_BY_ID, method = RequestMethod.GET)
     public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
         Owner owner = this.clinicService.findOwnerById(ownerId);
         model.addAttribute(owner);
         return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
     }
 
-    @RequestMapping(value = "/owners/{ownerId}/edit", method = RequestMethod.POST)
+    @RequestMapping(value = EDIT_OWNER_BY_ID, method = RequestMethod.POST)
     public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") int ownerId) {
         if (result.hasErrors()) {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
