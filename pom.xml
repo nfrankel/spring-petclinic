@@ -120,6 +120,16 @@
 
   <build>
     <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.7.0</version>
+            <configuration>
+                <compilerArgs>
+                    <arg>--add-modules</arg>
+                    <arg>java.xml.bind</arg>
+                </compilerArgs>
+            </configuration>
+        </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
