@@ -135,6 +135,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
           <configuration>
               <jvmArguments>--add-modules java.xml.bind</jvmArguments>
+              <mainClass>org.springframework.samples.petclinic.PetClinicApplication</mainClass>
           </configuration>
         <executions>
           <execution>
