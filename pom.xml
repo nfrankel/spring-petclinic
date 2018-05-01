@@ -108,6 +108,15 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
           <!-- build -->
+          <executions>
+              <execution>
+                  <!-- Spring Boot Actuator displays build-related information
+                    if a META-INF/build-info.properties file is present -->
+                  <goals>
+                      <goal>build-info</goal>
+                  </goals>
+              </execution>
+          </executions>
       </plugin>
         <!-- git -->
       <plugin>
