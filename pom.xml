@@ -104,6 +104,11 @@
           <artifactId>spring-boot-starter-data-solr</artifactId>
       </dependency>
       <!-- prometheus -->
+      <dependency>
+          <groupId>io.micrometer</groupId>
+          <artifactId>micrometer-registry-prometheus</artifactId>
+          <version>1.0.1</version>
+      </dependency>
   </dependencies>
 
   <build>
